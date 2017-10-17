@@ -96,11 +96,12 @@
                         $("#label2").html(quiz.questions[j].alternatives[a[1]]);
                         $("#label3").html(quiz.questions[j].alternatives[a[2]]);
                         $("#label4").html(quiz.questions[j].alternatives[a[3]]);
+                        setTable();
+
 
                         t=timer;
                     }
                     $("#timerText").html("Time left: "+t+" seconds");
-                    setTable();
                 },1000);
             }
             function shuffle(){

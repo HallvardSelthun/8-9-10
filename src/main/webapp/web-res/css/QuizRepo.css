@@ -11,6 +11,9 @@ h1, h2, h3, h4{
 a{
     color:#FAC800;
 }
+.modal *{
+    color:black;
+}
 .jumbotron{
     background-color: #0066FF;
     margin:0;

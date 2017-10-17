@@ -1,6 +1,6 @@
 body{
     background-color: #0066FF;
-    font-size:150%;
+    font-size:170%;
     font-family: Tahoma, sans-serif;
     color:#FAC800;
 
@@ -15,6 +15,13 @@ body{
 a{
     color:#FAC800;
 }
+header {
+    font-size:18px;
+    background-color:  #0066FF;
+    display: inline-block;
+    border:solid 2px #FAC800;
+    margin-bottom:35px;
+}
 h1, h2, h3, h4{
     color:#FAC800;
     font-weight:bold;
@@ -23,12 +30,7 @@ h1, h2, h3, h4{
 .container{
     /*margin:0;*/
 }
-header {
-    background-color:  #0066FF;
-    display: inline-block;
-    border:solid 2px #FAC800;
-    margin-bottom:35px;
-}
+
 .form-group{
     padding:0;
     margin:2px;
