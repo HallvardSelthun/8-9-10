@@ -26,8 +26,8 @@
 
             $("#createQuiz").click(function () {
                 $("#myModal").modal('show');
-
             });
+
             $("#createFinal").click(function () {
                 var test = new Date(Date.parse($("#quizDate").val()));
                 test.getMilliseconds();
@@ -44,7 +44,9 @@
                     qAmount: $("#qAmount").val(),
                     endTime: (1000*$("#timeInt").val()*$("#qAmount").val())
                 };
-                 if (addQuiz(quiz)==1) window.location = "MakeQuiz.html";
+                var ok = addQuiz(quiz)
+                console.log(ok);
+                window.location = "MakeQuiz.html";
                 ;
 
 
@@ -52,6 +54,10 @@
 
             $("#browseQuizzes").click(function () {
                 window.location = "QuizRepo.html";
+            });
+
+            $("#gQuiz").click(function(){
+                generateQuiz();
             });
 
 
@@ -71,17 +77,18 @@
                 })
             }
 
-            function generateQuizzes(){
-                var now = new Date(Date.now());
-                var today= new Date(Date.today).toString();
-                var cHour = now.getHours();
-                var cMinutes = now.getMinutes();
+            function generateQuiz(){
+                var now = new Date();
+                var datetext = now.toTimeString().split(' ')[0];
+                var time = datetext.substring(0, datetext.length - 3);
+                console.log(time);
+                var today = now.toISOString().slice(0,10);
 
-                var thisMinute = new Date( today+"T"+cHour+":"+cMinutes+":00+02:00");
+                console.log(today);
 
                 var quiz1 = {
-                    name: "Quiz1",
-                    questionTime: 20,
+                    name: "Generated Quiz",
+                    questionTime: 40,
                     questions: [
                         {questionName: "Who is the original maker of this quiz?",
                         alternatives: ["Hallvard","Santa Claus","Brage","Me"]},
@@ -95,7 +102,7 @@
                         alternatives: ["Heck no!", "Of course!","Brage", "Maybe"]}
                     ],
                     startDay: today,
-                    startTime: cHour+":"+cMinutes,
+                    startTime: time,
                     qAmount: 5,
                     endTime: (1000*20*5)
                 };
@@ -122,6 +129,7 @@
                 <p class="lead">
                     <button type="button" class="btn btn-info btn-lg" id="createQuiz">Create Quiz</button>
                     <button type ="button" class="btn btn-info btn-lg" id="browseQuizzes">Browse Quizzes</button>
+                    <button type ="button" class ="btn btn-info btn-lg" id="gQuiz">Generate a complete Quiz (mostly for testing)</button>
                 </p>
             </div>
 

@@ -69,14 +69,11 @@
                 $("#label3").html(quiz.questions[j].alternatives[a[2]]);
                 $("#label4").html(quiz.questions[j].alternatives[a[3]]);
 
-                console.log("J: "+j);
                 var interval1 = setInterval(function a (){
                     t -= 1;
                     if(t===0){
                         localStorage.setItem(serverNick+quizName, false);
                         $("#quiz").html (originalhtml).show();
-                        console.log("J: " +j);
-                        console.log("Q-length: "+quiz.questions.length);
                         if((j+1)>=quiz.questions.length){
                             $("#quiz").html ("Quiz Over!").show();
                             stopQuiz();
@@ -159,10 +156,7 @@
                 var sendN = serverNick.replace('"','').replace('"','');
                 localStorage.setItem(serverNick+quizName, true); //Pffffff
 
-                console.log($(this).html() +" --- "+quiz.questions[j].alternatives[0]);
                 if($(this).html() === quiz.questions[j].alternatives[0]) {
-
-                    console.log(sendN);
                     var p = {
                         score: 1
                     };
