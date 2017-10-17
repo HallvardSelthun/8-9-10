@@ -22,6 +22,8 @@
 
     <script>
         $(document).ready(function () {
+
+
             $("#createQuiz").click(function () {
                 $("#myModal").modal('show');
 
@@ -42,6 +44,18 @@
                     qAmount: $("#qAmount").val(),
                     endTime: (1000*$("#timeInt").val()*$("#qAmount").val())
                 };
+                 if (addQuiz(quiz)==1) window.location = "MakeQuiz.html";
+                ;
+
+
+            });
+
+            $("#browseQuizzes").click(function () {
+                window.location = "QuizRepo.html";
+            });
+
+
+            function addQuiz(quiz){
                 $.ajax({
                     url: "rest/quizzes",
                     type: 'POST',
@@ -49,17 +63,45 @@
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
                     success: function () {
-                        window.location = "MakeQuiz.html";
+                        return 1;
                     },
                     error: function () {
                         alert("Something went wrong");
                     }
                 })
-            });
+            }
 
-            $("#browseQuizzes").click(function () {
-                window.location = "QuizRepo.html";
-            })
+            function generateQuizzes(){
+                var now = new Date(Date.now());
+                var today= new Date(Date.today).toString();
+                var cHour = now.getHours();
+                var cMinutes = now.getMinutes();
+
+                var thisMinute = new Date( today+"T"+cHour+":"+cMinutes+":00+02:00");
+
+                var quiz1 = {
+                    name: "Quiz1",
+                    questionTime: 20,
+                    questions: [
+                        {questionName: "Who is the original maker of this quiz?",
+                        alternatives: ["Hallvard","Santa Claus","Brage","Me"]},
+                        {questionName: "What is 2+2?",
+                        alternatives: ["4","NaN","22", "Brage"]},
+                        {questionName: "How tall is Galdhøpiggen?",
+                        alternatives: ["2469", "Brage", "2439","-1"]},
+                        {questionName: "Have you ever had a dream that that you um you add you do what you could you do yo it you want you could you want them to do you so much you could do anything?",
+                        alternatives: ["Brage", "Yes","No", "undefined"]},
+                        {questionName: "Will this even work?",
+                        alternatives: ["Heck no!", "Of course!","Brage", "Maybe"]}
+                    ],
+                    startDay: today,
+                    startTime: cHour+":"+cMinutes,
+                    qAmount: 5,
+                    endTime: (1000*20*5)
+                };
+                addQuiz(quiz1);
+
+            }
         });
     </script>
 
